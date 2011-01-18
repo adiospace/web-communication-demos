@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Web Sockets</h1>
+    <script>
+      var s = new WebSocket('ws://localhost:4001/');
+
+      s.onmessage = function(e) {
+        console.log(e.data);
+      };
+      
+      s.onclose = function () {
+        s.send('bye from client!');
+        console.log('close');
+      };
+
+      s.onopen = function() {
+        s.send('hi from client!');
+        console.log('hi');
+      };
+    </script>
+  </body>
+</html>

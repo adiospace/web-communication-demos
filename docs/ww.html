@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Web Workers</h1>
+    <div id="result"></div>
+    <script>
+      var worker = new Worker('my_worker.js'),
+          result = document.getElementById('result');
+
+        worker.addEventListener('message', function (e) {
+          console.log(e.data);
+        }, true);
+        
+        
+    </script>
+  </body>
+</html>

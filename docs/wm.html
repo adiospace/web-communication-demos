@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Messaging (same domain)</title>
+</head>
+<body>
+  <h1>web messaging</h1>
+  <iframe id="iframe" src="target.html"></iframe>
+  <script>
+    var win = document.getElementById('iframe').contentWindow;
+    win.postMessage('Howdy!', window.location);
+
+    window.onmessage = function (e) {
+      console.log(e.data);
+    }
+</script>    
+</body>
+</html>
+
+
