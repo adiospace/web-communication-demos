@@ -4,7 +4,7 @@ var
   paperboy = require('./libs/paperboy.js'),
 
   PORT = 4000,
-  WEBROOT = path.join(path.dirname(__filename), 'docs');
+  WEBROOT = path.join(path.dirname(__filename), 'public_html');
 
 http.createServer(function(req, res) {
   paperboy.deliver(WEBROOT, req, res);
