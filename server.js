@@ -8,10 +8,12 @@ var path = require('path'),
 
 http.createServer(function(req, res) {
   // server sent events
-  if (req.headers.accept && req.headers.accept == 'text/event-stream') {
+  if (req.headers.accept && 
+      req.headers.accept == 'text/event-stream' && 
+      req.url == '/events') {
     handle_sse(req, res);
 
-  //static server
+  //serve static files
   } else {
     paperboy.deliver(WEBROOT, req, res);
   }
@@ -20,17 +22,12 @@ console.log('Server running at http://127.0.0.1:'+ PORT);
 
 
 function handle_sse(req, res) {
-  if (req.url == '/sse') {
-    res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache'
-    });
-    
-    //res.write('retry: 30000\n');
-    res.write('data: ' + (new Date()) + '\n\n');
-    res.end();
-  } else {
-    res.writeHead(404);
-    res.end();
-  }
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache'
+  });
+  
+  //res.write('retry: 30000\n');
+  res.write('data: ' + (new Date()) + '\n\n');
+  res.end();
 }
