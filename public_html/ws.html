@@ -23,23 +23,23 @@
         message = document.getElementById('message'),
         result = document.getElementById('result');
           
-      form.addEventListener('submit', function(e) {
+      form.onsubmit = function(e) {
         e.preventDefault();
         ws.send(message.value);
         return false;
-      }, false);
+      };
 
-      ws.addEventListener('message', function(e) {
+      ws.onmessage = function(e) {
         result.innerHTML = e.data;
-      }, false);
+      };
 
-      ws.addEventListener('close', function(e) {
+      ws.onclose = function(e) {
         console.log('connection was closed');
-      }, false);
+      };
 
-      ws.addEventListener('open', function(e) {
+      ws.onopen = function(e) {
         console.log('connection was open');
-      }, false);
+      };
 
     </script>
   </body> 

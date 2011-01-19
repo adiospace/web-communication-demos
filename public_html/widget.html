@@ -10,7 +10,7 @@
     <script> 
       var origin = 'http://example.com:4000';
 
-      addEventListener('message', function(e){
+      onmessage = function(e){
         var incoming = document.getElementById('in');
 
         if ( e.origin === origin ) {
@@ -19,7 +19,8 @@
         } else {
           incoming.innerHTML = "I don't talk with strangers (" + e.origin + ")";
         }
-      }, false);
+      };
+
     </script> 
   </body> 
 </html> 

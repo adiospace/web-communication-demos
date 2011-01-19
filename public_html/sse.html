@@ -8,14 +8,14 @@
     <h1>SSE</h1> 
     <div id="messages"></div>
     <script>
-      var source = new EventSource('/events'),
-        messages = document.getElementById('messages');
 
-      source.addEventListener('message', function(e) {
-          messages.innerHTML += "<p>" + e.data.split('/n').join('') + "</p>";
-          //var a = JSON.parse(e.data);
-          //console.log(a);
-      }, false);
+      source.onmessage = function(e) {
+        console.log(e);
+        messages.innerHTML += "<p>" + e.data.split('/n').join('') + "</p>";
+        //var a = JSON.parse(e.data);
+        //console.log(a);
+      };
+
     </script>
 </body>
 </html>
