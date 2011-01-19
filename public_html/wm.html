@@ -30,7 +30,7 @@
 
         win.postMessage(message.value, origin);
         //for same domain
-        //win.postMessage(message.value, window.location);
+        //win.postMessage(message.value, document.location);
 
         return false;
       }, false);
@@ -39,7 +39,7 @@
       addEventListener('message', function(e){ 
         if (e.origin === origin) { console.log(e.data); }
         //for same domain
-        //if (e.origin === window.location.origin) { console.log(e.data); }
+        //if (e.origin === document.location.origin) { console.log(e.data); }
       }, false);
     </script>
   </body> 
