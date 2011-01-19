@@ -28,6 +28,15 @@ function handle_sse(req, res) {
   });
   
   //res.write('retry: 30000\n');
+
+  res.write('data: Time is:\n');
   res.write('data: ' + (new Date()) + '\n\n');
   res.end();
+
+  //res.write('data: {\n');
+  //res.write('data: "name": "Adrian Olaru",\n');
+  //res.write('data: "age": 26\n');
+  //res.write('data: }\n\n');
+  //res.end();
+  
 }

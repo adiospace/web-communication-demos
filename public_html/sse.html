@@ -12,8 +12,9 @@
         messages = document.getElementById('messages');
 
       source.addEventListener('message', function(e) {
-          messages.innerHTML += "<p>" + e.data + "</p>";
-          console.log(e);
+          messages.innerHTML += "<p>" + e.data.split('/n').join('') + "</p>";
+          //var a = JSON.parse(e.data);
+          //console.log(a);
       }, false);
     </script>
 </body>
