@@ -9,6 +9,9 @@
     <div id="messages"></div>
     <script>
 
+      var source = new EventSource('/events'),
+        messages = document.getElementById('messages');
+
       source.onmessage = function(e) {
         console.log(e);
         messages.innerHTML += "<p>" + e.data.split('/n').join('') + "</p>";
@@ -17,5 +20,5 @@
       };
 
     </script>
-</body>
+  </body>
 </html>
