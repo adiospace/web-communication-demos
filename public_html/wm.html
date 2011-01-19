@@ -25,7 +25,7 @@
           message = document.getElementById('message'),
           origin = 'http://example.net:4000';
 
-      form.addEventListener('submit', function (e) {
+      form.onsubmit = function (e) {
         e.preventDefault();
 
         win.postMessage(message.value, origin);
@@ -33,16 +33,14 @@
         //win.postMessage(message.value, document.location);
 
         return false;
-      }, false);
+      };
 
       // messages from iframe just go to the console.
-      addEventListener('message', function(e){ 
+      onmessage = function(e){ 
         if (e.origin === origin) { console.log(e.data); }
         //for same domain
         //if (e.origin === document.location.origin) { console.log(e.data); }
-      }, false);
+      };
     </script>
   </body> 
 </html> 
-
-

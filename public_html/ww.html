@@ -19,20 +19,19 @@
 
     <script>
       var form = document.getElementsByTagName('form')[0],
-          message = document.getElementById('message'),
-          result = document.getElementById('result'),
-          worker = new Worker('worker.js');
+        message = document.getElementById('message'),
+        result = document.getElementById('result'),
+        worker = new Worker('worker.js');
           
-
-      form.addEventListener('submit', function(e) {
+      form.onsubmit = function(e) {
         e.preventDefault();
         worker.postMessage(message.value);
         return false;
-      }, false);
+      };
 
-      worker.addEventListener('message', function(e) {
+      worker.onmessage = function(e) {
         result.innerHTML = 'Result is: ' + e.data;
-      }, false);
+      };
 
     </script>
   </body> 
