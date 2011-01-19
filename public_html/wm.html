@@ -1,21 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Messaging (same domain)</title>
-</head>
-<body>
-  <h1>web messaging</h1>
-  <iframe id="iframe" src="target.html"></iframe>
-  <script>
-    var win = document.getElementById('iframe').contentWindow;
-    win.postMessage('Howdy!', window.location);
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset=utf-8 /> 
+    <title>Web Messaging</title> 
+  </head> 
+  <body> 
+    <form method="post"> 
+      <p>
+        <label for="message">Message</label> 
+        <input type="text" name="message" id="message" value="What's up?" /> 
+        <input type="submit" /> 
+      </p> 
+    </form> 
 
-    window.onmessage = function (e) {
-      console.log(e.data);
-    }
-</script>    
-</body>
-</html>
+    <iframe id="iframe" src="http://example.net:4000/widget.html"></iframe>
+    <!-- for same domain -->
+    <!-- <iframe id="iframe" src="widget.html"></iframe> -->
+
+    <script> 
+      var win = document.getElementById('iframe').contentWindow,
+          form = document.getElementsByTagName('form')[0],
+          message = document.getElementById('message'),
+          origin = 'http://example.net:4000';
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        win.postMessage(message.value, origin);
+        //for same domain
+        //win.postMessage(message.value, window.location);
+
+        return false;
+      }, true);
+
+      // messages from iframe just go to the console.
+      addEventListener('message', function(e){ 
+        if (e.origin === origin) { console.log(e.data); }
+        //for same domain
+        //if (e.origin === window.location.origin) { console.log(e.data); }
+      }, true);
+    </script>
+  </body> 
+</html> 
 
 

@@ -1,22 +1,25 @@
 <!DOCTYPE html> 
-<html> 
-<head> 
-  <title>postMessage target</title> 
-</head> 
-<body> 
-<h1>iframe</h1> 
-<p id="in">Send me a message!</p> 
-<script> 
-  window.onmessage = function(e){
-    var incoming = document.getElementById('in');
-   // if ( e.origin !== "http://example.com" ) {
-    //  incoming.innerHTML = 'Ignoring message from ' + e.origin;
-    //} else {
-      incoming.innerHTML = e.origin + " said: " + e.data;
-    //}
-  };
-  var win = window.parent;
-  win.postMessage('what\'up doc?', window.location);
-</script> 
-</body> 
-</html>
+<html lang="en"> 
+  <head> 
+    <meta charset=utf-8 /> 
+    <title>Web Messaging Target</title> 
+  </head> 
+  <body> 
+    <h1>I'm the iframe</h1> 
+    <p id="in">Talk to me, boy!</p> 
+    <script> 
+      var origin = 'http://example.com:4000';
+
+      addEventListener('message', function(e){
+        var incoming = document.getElementById('in');
+
+        if ( e.origin === origin ) {
+          incoming.innerHTML = e.origin + " said: " + e.data;
+          e.source.postMessage("Nothing...chillin' in your document!", e.origin);
+        } else {
+          incoming.innerHTML = "I don't talk with strangers (" + e.origin + ")";
+        }
+      }, true);
+    </script> 
+  </body> 
+</html> 
