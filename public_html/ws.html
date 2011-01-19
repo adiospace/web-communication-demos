@@ -27,19 +27,20 @@
         e.preventDefault();
         ws.send(message.value);
         return false;
-      }, true);
+      }, false);
 
       ws.addEventListener('message', function(e) {
         result.innerHTML = e.data;
-      }, true);
+      }, false);
 
       ws.addEventListener('close', function(e) {
         console.log('connection was closed');
-      }, true);
+      }, false);
 
       ws.addEventListener('open', function(e) {
         console.log('connection was open');
-      }, true);
+      }, false);
+
     </script>
   </body> 
 </html> 

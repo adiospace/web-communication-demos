@@ -28,11 +28,11 @@
         e.preventDefault();
         worker.postMessage(message.value);
         return false;
-      }, true);
+      }, false);
 
       worker.addEventListener('message', function(e) {
         result.innerHTML = 'Result is: ' + e.data;
-      }, true);
+      }, false);
 
     </script>
   </body> 

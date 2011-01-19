@@ -15,12 +15,12 @@
       </p> 
     </form> 
 
-    <iframe id="iframe" src="http://example.net:4000/widget.html"></iframe>
+    <iframe src="http://example.net:4000/widget.html"></iframe>
     <!-- for same domain -->
-    <!-- <iframe id="iframe" src="widget.html"></iframe> -->
+    <!-- <iframe src="widget.html"></iframe> -->
 
     <script> 
-      var win = document.getElementById('iframe').contentWindow,
+      var win = document.getElementsByTagName('iframe')[0].contentWindow,
           form = document.getElementsByTagName('form')[0],
           message = document.getElementById('message'),
           origin = 'http://example.net:4000';
@@ -33,14 +33,14 @@
         //win.postMessage(message.value, window.location);
 
         return false;
-      }, true);
+      }, false);
 
       // messages from iframe just go to the console.
       addEventListener('message', function(e){ 
         if (e.origin === origin) { console.log(e.data); }
         //for same domain
         //if (e.origin === window.location.origin) { console.log(e.data); }
-      }, true);
+      }, false);
     </script>
   </body> 
 </html> 
