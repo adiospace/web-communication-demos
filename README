@@ -3,7 +3,7 @@ Requirements:
 * this source code
 * node.js 0.2.6
 * a modern browser, preferably Chrome
-* add this to /etc/hosts
+* add these lines to /etc/hosts
   127.0.0.1 example.com
   127.0.0.1 example.net
 
