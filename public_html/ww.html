@@ -1,19 +1,41 @@
-<!doctype html>
-<html>
-  <head>
-  </head>
-  <body>
-    <h1>Web Workers</h1>
-    <div id="result"></div>
-    <script>
-      var worker = new Worker('my_worker.js'),
-          result = document.getElementById('result');
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset=utf-8 /> 
+    <title>Web Messaging</title> 
+  </head> 
+  <body> 
+    <h1>Web Workers</h1> 
 
-        worker.addEventListener('message', function (e) {
-          console.log(e.data);
-        }, true);
-        
-        
+    <form method="post"> 
+      <p>
+        <label for="message">Calculate n! of:</label> 
+        <input type="text" name="message" id="message" value="5" /> 
+        <input type="submit" /> 
+      </p> 
+    </form> 
+
+    <p id="result"></p>
+
+    <script>
+      var form = document.getElementsByTagName('form')[0],
+          message = document.getElementById('message'),
+          result = document.getElementById('result'),
+          worker = new Worker('worker.js');
+          
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        worker.postMessage(message.value);
+        return false;
+      }, true);
+
+      worker.addEventListener('message', function(e) {
+        result.innerHTML = 'Result is: ' + e.data;
+      }, true);
+
     </script>
-  </body>
-</html>
+  </body> 
+</html> 
+
+
