@@ -1,25 +1,46 @@
-<!doctype html>
-<html>
-  <head>
-  </head>
-  <body>
-    <h1>Web Sockets</h1>
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset=utf-8 /> 
+    <title>Web Sockets</title> 
+  </head> 
+  <body> 
+    <h1>Web Sockets</h1> 
+
+    <form method="post"> 
+      <p>
+        <label for="message">Message:</label> 
+        <input type="text" name="message" id="message" /> 
+        <input type="submit" /> 
+      </p> 
+    </form> 
+
+    <div id="result"></div>
+
     <script>
-      var s = new WebSocket('ws://localhost:4001/');
+      var ws = new WebSocket('ws://example.net:4001/'),
+        form = document.getElementsByTagName('form')[0],
+        message = document.getElementById('message'),
+        result = document.getElementById('result');
+          
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        ws.send(message.value);
+        return false;
+      }, true);
 
-      s.onmessage = function(e) {
-        console.log(e.data);
-      };
-      
-      s.onclose = function () {
-        s.send('bye from client!');
-        console.log('close');
-      };
+      ws.addEventListener('message', function(e) {
+        result.innerHTML = e.data;
+      }, true);
 
-      s.onopen = function() {
-        s.send('hi from client!');
-        console.log('hi');
-      };
+      ws.addEventListener('close', function(e) {
+        console.log('connection was closed');
+      }, true);
+
+      ws.addEventListener('open', function(e) {
+        console.log('connection was open');
+      }, true);
     </script>
-  </body>
-</html>
+  </body> 
+</html> 
+
