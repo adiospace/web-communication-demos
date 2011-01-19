@@ -1,21 +1,17 @@
 Requirements:
-  * this source code
-  * node.js 0.2.6
-  * a modern browser, preferably Chrome
-  * add this to /etc/hosts
-      127.0.0.1 example.net
-      127.0.0.1 example.com
-      127.0.0.1 example.org
-      127.0.0.1 example.edu
+
+* this source code
+* node.js 0.2.6
+* a modern browser, preferably Chrome
+* add this to /etc/hosts
+  127.0.0.1 example.com
+  127.0.0.1 example.net
 
 
-For Web Messaging:
-  * start the server
-    node server.js
-  * navigate to example.com:4000/wm.html
+Let's get going:
 
-For Web Workers:
-  * start the server
-    node server.js
-  * navigate to example.com:4000/ww.html
+* Fire up the server with 'node server.js'
+  (for web sockets) also start the ws server with 'node ws_server.js'
+
+* Navigate to example.com:4000/index.html
 

@@ -1,5 +1,5 @@
-var 
-  path = require('path'),
+var path = require('path'),
+  fs = require('fs'),
   http = require('http'),
   paperboy = require('./libs/paperboy.js'),
 
@@ -7,6 +7,30 @@ var
   WEBROOT = path.join(path.dirname(__filename), 'public_html');
 
 http.createServer(function(req, res) {
-  paperboy.deliver(WEBROOT, req, res);
+  // server sent events
+  if (req.headers.accept && req.headers.accept == 'text/event-stream') {
+    handle_sse(req, res);
+
+  //static server
+  } else {
+    paperboy.deliver(WEBROOT, req, res);
+  }
 }).listen(PORT);
 console.log('Server running at http://127.0.0.1:'+ PORT);
+
+
+function handle_sse(req, res) {
+  if (req.url == '/sse') {
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache'
+    });
+    
+    //res.write('retry: 30000\n');
+    res.write('data: ' + (new Date()) + '\n\n');
+    res.end();
+  } else {
+    res.writeHead(404);
+    res.end();
+  }
+}

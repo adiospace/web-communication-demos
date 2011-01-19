@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-</head>
-<body>
-  <h1>sse</h1>
-  <script>
-    var source = new EventSource('/events');
-    source.addEventListener('message', function(e) {
-      console.log(e.data);
-    }, false);
+<!DOCTYPE html> 
+<html lang="en"> 
+  <head> 
+    <meta charset=utf-8 /> 
+    <title>SSE</title> 
+  </head> 
+  <body> 
+    <h1>SSE</h1> 
+    <div id="messages"></div>
+    <script>
+      var source = new EventSource('/sse'),
+        messages = document.getElementById('messages');
 
-    source.addEventListener('open', function(e) {
-      console.log('Connection was opened.');
-    }, false);
+      source.addEventListener('message', function(e) {
+          messages.innerHTML += "<p>" + e.data + "</p>";
+      }, false);
 
-    source.addEventListener('error', function(e) {
-      if (e.eventPhase == EventSource.CLOSED) {
-        console.log('Connection was closed.');
-      }
-    }, false);
-  </script>
+      source.addEventListener('open', function(e) {
+        console.log('Connection was opened.');
+      }, false);
+
+      source.addEventListener('error', function(e) {
+        if (e.readyState == EventSource.CLOSED) {
+          console.log('Connection was closed.');
+        }
+      }, false);
+
+    </script>
 </body>
 </html>
