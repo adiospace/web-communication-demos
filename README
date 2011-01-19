@@ -13,5 +13,5 @@ Let's get going:
 * Fire up the server with 'node server.js'
   (for web sockets) also start the ws server with 'node ws_server.js'
 
-* Navigate to example.com:4000/index.html
+* Navigate to example.com:4000
 
