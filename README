@@ -1,7 +1,9 @@
-Demos for my Web Communication presentation. You can find the slides on slideshare: http://www.slideshare.net/adrianolaru/web-communication-7890964.
+Demos for my Web Communication Presentation
+
+Slides:
+http://www.slideshare.net/adrianolaru/web-communication-7890964
 
 Requirements:
-
 * this source code
 * node.js 0.2.6
 * a modern browser, preferably Chrome
@@ -11,8 +13,6 @@ Requirements:
 
 
 Let's get going:
-
 * Fire up the server with 'node server.js'
   (for web sockets) also start the ws server with 'node ws_server.js'
-
 * Navigate to http://example.com:4000
